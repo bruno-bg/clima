@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const ClimaContainer = styled.div`
   font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #89cff0, #005c99);
-  color: white;
+  background: linear-gradient(to bottom, #0f172a, #0b1220);
+  color: #e5e7eb;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,6 +14,7 @@ export const ClimaContainer = styled.div`
 export const Titulo = styled.h2`
   font-size: 2rem;
   margin-bottom: 20px;
+  color: #f3f4f6;
 `;
 
 export const InputCidade = styled.input`

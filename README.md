@@ -1,19 +1,18 @@
 # Aplicativo de Previsão do Tempo
 
-Este é um aplicativo web desenvolvido em React que permite consultar a previsão do tempo de qualquer cidade do mundo. O aplicativo utiliza a API OpenWeatherMap para obter dados meteorológicos em tempo real.
+Aplicação web em React para consultar clima atual e previsão por cidade usando a API OpenWeatherMap.
 
 ## Funcionalidades
 
-- Consulta de previsão do tempo por cidade
-- Exibição de temperatura atual
-- Informações sobre umidade, velocidade do vento e pressão atmosférica
+- Busca de previsão por cidade
+- Exibição de temperatura atual e descrição do clima
+- Previsão para as próximas horas (5 entradas)
+- Estados de carregamento e mensagens de erro básicas
 - Interface responsiva e moderna
-- Design intuitivo e fácil de usar
 
 ## Pré-requisitos
 
-Antes de começar, você precisará ter instalado em sua máquina:
-- Node.js (versão 14 ou superior)
+- Node.js 18 ou superior
 - npm ou yarn
 
 ## Instalação
@@ -42,18 +41,15 @@ VITE_OPENWEATHER_API_KEY=sua_chave_api_aqui
 
 ## Como Obter a Chave da API OpenWeatherMap
 
-Para utilizar o aplicativo, você precisará de uma chave de API do OpenWeatherMap. Siga estes passos para obtê-la:
-
 1. Acesse o site [OpenWeatherMap](https://openweathermap.org/)
 2. Clique em "Sign Up" no canto superior direito
-3. Preencha o formulário de cadastro com seus dados
-4. Após criar sua conta, acesse o [painel de API Keys](https://home.openweathermap.org/api_keys)
-5. Você receberá uma chave de API gratuita (Free tier)
+3. Após criar sua conta, acesse o [painel de API Keys](https://home.openweathermap.org/api_keys)
+4. Você receberá uma chave de API gratuita (Free tier)
    - A chave gratuita permite até 60 chamadas por minuto
    - Pode levar algumas horas para a chave ser ativada
-6. Copie sua chave de API e adicione-a ao arquivo `.env` como mostrado na seção de instalação
+5. Copie sua chave de API e adicione-a ao arquivo `.env` conforme mostrado acima
 
-> **Observação:** A chave gratuita tem algumas limitações. Se precisar de mais chamadas à API, considere fazer upgrade para um plano pago.
+> Observação: a chave gratuita tem limitações. Para mais chamadas, considere um plano pago.
 
 ## Como Executar
 
@@ -65,7 +61,7 @@ npm run dev
 yarn dev
 ```
 
-O aplicativo estará disponível em `http://localhost:5173`
+O aplicativo ficará disponível em `http://localhost:5173`.
 
 Para construir a versão de produção:
 
@@ -75,13 +71,18 @@ npm run build
 yarn build
 ```
 
+## Scripts úteis
+
+- `npm run check:md`: valida que todos os arquivos `.md` (exceto `README.md`) estejam dentro de `docs/`.
+
+## Padrão de Documentação
+
+- Todos os arquivos Markdown devem estar em `docs/`, com exceção de `README.md`.
+- O histórico de alterações e implementações está em `docs/alteracoes-implementacoes.md`.
+
 ## Tecnologias Utilizadas
 
-- React
-- Vite
-- Styled Components
-- Axios
-- OpenWeatherMap API
+- React, Vite, Styled Components, Axios, OpenWeatherMap API
 
 ## Dependências Principais
 
@@ -97,4 +98,3 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## Autor
 
 Bruno Guimarães - [GitHub](https://github.com/bruno-bg)
-

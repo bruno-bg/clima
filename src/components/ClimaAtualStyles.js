@@ -6,6 +6,7 @@ export const ClimaInfo = styled.div`
   h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
+    color: #f3f4f6;
   }
 
   img {
@@ -16,5 +17,6 @@ export const ClimaInfo = styled.div`
 
   p {
     margin-bottom: 5px;
+    color: #e5e7eb;
   }
 `;

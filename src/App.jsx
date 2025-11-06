@@ -11,37 +11,65 @@ const App = () => {
   const [cidade, setCidade] = useState("");
   const [clima, setClima] = useState(null);
   const [previsao, setPrevisao] = useState([]);
+  const [carregando, setCarregando] = useState(false);
+  const [erro, setErro] = useState("");
 
-  const apiKey = import.meta.env.VITE_API_KEY || "";
+  const apiKey =
+    import.meta.env.VITE_OPENWEATHER_API_KEY ||
+    import.meta.env.VITE_API_KEY ||
+    "";
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      const resposta = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`
+    const buscarPorGeo = async (lat, lon) => {
+      try {
+        setCarregando(true);
+        setErro("");
+        const resposta = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`
+        );
+        setCidade(resposta.data.name);
+        setClima(resposta.data);
+      } catch (e) {
+        setErro("Não foi possível obter o clima pela localização.");
+      } finally {
+        setCarregando(false);
+      }
+    };
+
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          buscarPorGeo(latitude, longitude);
+        },
+        () => {
+          setErro("Permissão de localização negada. Busque por uma cidade.");
+        }
       );
-      setCidade(resposta.data.name);
-      setClima(resposta.data);
-    });
+    } else {
+      setErro("Geolocalização não suportada. Busque por uma cidade.");
+    }
   }, [apiKey]);
 
   const buscarClima = async () => {
     try {
+      setCarregando(true);
+      setErro("");
       const respostaClima = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${apiKey}&units=metric&lang=pt_br`
       );
       const respostaPrevisao = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?q=${cidade}&appid=${apiKey}&units=metric&lang=pt_br`
       );
-
-      // Nota: a requisição acima usa `units=metric`, portanto a API já
-      // retorna a temperatura em graus Celsius (°C). Não devemos aplicar
-      // conversões adicionais aqui para evitar resultados incorretos.
       setClima(respostaClima.data);
-      setPrevisao(respostaPrevisao.data.list.slice(0, 5)); // Obter as 5 primeiras previsões
+      setPrevisao(respostaPrevisao.data.list.slice(0, 5));
     } catch (error) {
       console.error("Erro ao buscar dados do clima:", error);
+      setErro(
+        "Não foi possível buscar os dados. Verifique a cidade e a conexão."
+      );
+    } finally {
+      setCarregando(false);
     }
   };
 
@@ -49,6 +77,8 @@ const App = () => {
     <ClimaContainer>
       <Titulo>Condições Climáticas</Titulo>
       <Busca cidade={cidade} setCidade={setCidade} buscarClima={buscarClima} />
+      {carregando && <p>Carregando...</p>}
+      {erro && <p>{erro}</p>}
       {clima && <ClimaAtual clima={clima} />}
       {previsao.length > 0 && <Previsao previsoes={previsao} />}
     </ClimaContainer>
@@ -56,3 +86,4 @@ const App = () => {
 };
 
 export default App;
+
