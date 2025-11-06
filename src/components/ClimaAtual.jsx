@@ -9,7 +9,7 @@ const ClimaAtual = ({ clima }) => {
         src={`http://openweathermap.org/img/wn/${clima.weather[0].icon}.png`}
         alt={clima.weather[0].description}
       />
-      <p>{clima.main.temp}°C</p>
+  <p>{clima.main.temp.toFixed(1)}°C</p>
       <p>{clima.weather[0].description}</p>
     </ClimaInfo>
   );

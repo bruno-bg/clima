@@ -12,7 +12,7 @@ const Previsao = ({ previsoes }) => {
               src={`http://openweathermap.org/img/wn/${previsao.weather[0].icon}.png`}
               alt={previsao.weather[0].description}
             />
-            {previsao.main.temp}°C - {previsao.weather[0].description}
+            {previsao.main.temp.toFixed(1)}°C - {previsao.weather[0].description}
           </li>
         ))}
       </ul>

@@ -35,8 +35,9 @@ const App = () => {
         `https://api.openweathermap.org/data/2.5/forecast?q=${cidade}&appid=${apiKey}&units=metric&lang=pt_br`
       );
 
-      respostaClima.data.main.temp = (respostaClima.data.main.temp - 32) * (5 / 9);
-
+      // Nota: a requisição acima usa `units=metric`, portanto a API já
+      // retorna a temperatura em graus Celsius (°C). Não devemos aplicar
+      // conversões adicionais aqui para evitar resultados incorretos.
       setClima(respostaClima.data);
       setPrevisao(respostaPrevisao.data.list.slice(0, 5)); // Obter as 5 primeiras previsões
     } catch (error) {
