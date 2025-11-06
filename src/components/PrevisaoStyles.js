@@ -8,6 +8,7 @@ export const PrevisaoContainer = styled.div`
   border-radius: 8px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
   color: #e5e7eb;
+  width: clamp(320px, 92vw, 360px);
 
   h4 {
     text-align: center;
@@ -22,9 +23,10 @@ export const PrevisaoContainer = styled.div`
     margin: 0;
 
     li {
-      display: flex;
+      display: grid;
+      grid-template-columns: 44px 84px 1fr; /* ícone | temperatura | descrição */
+      column-gap: 12px;
       align-items: center;
-      justify-content: space-between;
       padding: 12px;
       margin-bottom: 8px;
       background-color: #0f172a; /* slate-900 */
@@ -36,9 +38,47 @@ export const PrevisaoContainer = styled.div`
       font-weight: 500;
 
       img {
-        margin-right: 12px;
+        width: 38px;
+        height: 38px;
         filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
       }
+
+      .temp {
+        color: #f3f4f6;
+        font-weight: 600;
+        text-align: left;
+      }
+
+      .desc {
+        color: #cbd5e1;
+        text-align: left;
+      }
+    }
+  }
+
+  /* Responsivo: em telas estreitas, empilha temp/descrição abaixo do ícone */
+  @media (max-width: 420px) {
+    width: 94vw;
+
+    ul li {
+      grid-template-columns: 40px 1fr;
+      grid-template-rows: auto auto;
+      row-gap: 2px;
+    }
+
+    ul li img {
+      width: 34px;
+      height: 34px;
+    }
+
+    ul li .temp {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    ul li .desc {
+      grid-column: 2;
+      grid-row: 2;
     }
   }
 `;

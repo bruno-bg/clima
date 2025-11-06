@@ -12,7 +12,8 @@ const Previsao = ({ previsoes }) => {
               src={`https://openweathermap.org/img/wn/${previsao.weather[0].icon}.png`}
               alt={previsao.weather[0].description}
             />
-            {previsao.main.temp.toFixed(1)}°C - {previsao.weather[0].description}
+            <span className="temp">{previsao.main.temp.toFixed(1)}°C</span>
+            <span className="desc">{previsao.weather[0].description}</span>
           </li>
         ))}
       </ul>
@@ -37,4 +38,3 @@ Previsao.propTypes = {
 };
 
 export default Previsao;
-
