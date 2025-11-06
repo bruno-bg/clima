@@ -1,3 +1,4 @@
+// Previsao.jsx — Lista 5 entradas de previsão (3h), com ícone, temperatura e descrição.
 import PropTypes from "prop-types";
 import { PrevisaoContainer } from "./PrevisaoStyles";
 

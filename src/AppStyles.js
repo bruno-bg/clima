@@ -4,11 +4,12 @@ export const ClimaContainer = styled.div`
   font-family: Arial, sans-serif;
   background: linear-gradient(to bottom, #0f172a, #0b1220);
   color: #e5e7eb;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 80px; /* espaço para a navbar fixa */
 `;
 
 export const Titulo = styled.h2`

@@ -1,3 +1,4 @@
+// ClimaAtual.jsx — Exibe informações do clima atual (cidade, ícone, temperatura e descrição).
 import PropTypes from "prop-types";
 import { ClimaInfo } from "./ClimaAtualStyles";
 
@@ -31,4 +32,3 @@ ClimaAtual.propTypes = {
 };
 
 export default ClimaAtual;
-
